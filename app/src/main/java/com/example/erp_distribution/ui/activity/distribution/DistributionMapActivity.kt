@@ -1,16 +1,27 @@
 package com.example.erp_distribution.ui.activity.distribution
 
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
+import android.view.Window
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatImageButton
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.erp_distribution.R
 import com.example.erp_distribution.data.request.FilterDistributionRequest
-import com.example.erp_distribution.data.response.ListDistributionResponse
+import com.example.erp_distribution.data.response.DistributionResponse
+import com.example.erp_distribution.data.response.Distributions
 import com.example.erp_distribution.databinding.ActivityDistributionMapBinding
-import com.example.erp_distribution.databinding.ActivityMainBinding
 import com.example.erp_distribution.presenter.DistributionPresenter
 import com.example.erp_distribution.ui.adapter.DistributionAdapter
 import com.example.erp_distribution.ui.base.ErpBaseActivity
+import com.example.erp_distribution.utils.PapersManager
+import com.google.android.material.snackbar.Snackbar
 import java.io.Serializable
 import javax.inject.Inject
 
@@ -43,34 +54,48 @@ class DistributionMapActivity : ErpBaseActivity(), DistributionPresenter.View {
             this.status = ""
         })
 
+
+        setAdapter()
     }
 
     private fun setAdapter() {
         @Suppress("SENSELESS_COMPARISON")
         if (distributionAdapter == null) {
-//            distributionAdapter = DistributionAdapter { id, status  ->
-//                when (status) {
-//                    0 -> distributionPresenter.checkPriceComplete(
-//                        product.sku,
-//                        quantity.toLong(),
-//                        false )
-//                    1 -> distributionPresenter.checkPriceComplete(
-//                        product.sku,
-//                        quantity.toLong(),
-//                        false )
-//                    2 -> {
-//                        showDialogDiscount(product, "ripley")
-//                    }
-//                }
-//            }
+            distributionAdapter = DistributionAdapter { status, distribution  ->
+                when (status) {
+                    0 -> {
+                        dialogDistribution(distribution)
+                    }
+                    else -> {
+                        Toast.makeText(this, "Sin información", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
             binding.recycler.removeAllViews()
             binding.recycler.removeAllViewsInLayout()
             binding.recycler.adapter = distributionAdapter
-//            distributionAdapter!!.data = PapersManager.shoppingCart.products
+            distributionAdapter!!.data = PapersManager.responseDistributions.listDistributions
         } else {
-//            distributionAdapter!!.data = PapersManager.shoppingCart.products
-//            distributionAdapter!!.notifyDataSetChanged()
+            distributionAdapter!!.data = PapersManager.responseDistributions.listDistributions
+            distributionAdapter!!.notifyDataSetChanged()
         }
+    }
+
+    fun dialogDistribution(distribution: Distributions) {
+
+        val dialog = Dialog(getContext())
+
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_distribution)
+
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.window?.attributes?.windowAnimations = R.style.AppTheme_Slide
+        dialog.setCancelable(true)
+        dialog.show()
     }
 
 
@@ -89,9 +114,12 @@ class DistributionMapActivity : ErpBaseActivity(), DistributionPresenter.View {
     override fun distributionSuccessPresenter(status: Int, vararg args: Serializable) {
         when (status) {
             200 -> {
-//                val shopping = args[0] as CheckPricesResponse
-//                val positions: MutableMap<Int, Int> = mutableMapOf()
-//                val ws = PapersManager.warranties
+                val response = args[0] as DistributionResponse
+                Log.d("Test", response.toString())
+//                if(response.status){
+//
+//                }
+                PapersManager.responseDistributions = response
             }
             300 -> {
 

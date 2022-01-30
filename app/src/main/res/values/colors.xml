@@ -11,5 +11,16 @@
     <color name="color_hint_text">#DBDBDB</color>
     <color name="color_text_input">#F0F0F0</color>
 
+
+    <color name="green">#2DC071</color>
+    <color name="green_light">#F2FFF7</color>
+
+    <color name="red">#DF1E1E</color>
+    <color name="red_light">#FFDEDE</color>
+
+    <color name="orange">#E77C40</color>
+    <color name="orange_light">#FFF6EF</color>
+
+
     <color name="color_error">#E63E51</color>
 </resources>

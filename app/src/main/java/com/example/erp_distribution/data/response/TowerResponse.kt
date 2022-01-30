@@ -4,7 +4,7 @@ package com.example.erp_distribution.data.response
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class ListTowerResponse(
+data class TowerResponse(
     @SerializedName("active")
     var active: String = "",
     @SerializedName("id")

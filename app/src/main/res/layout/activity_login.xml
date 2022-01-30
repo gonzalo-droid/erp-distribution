@@ -9,10 +9,10 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:scaleType="fitCenter"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,50 +20,6 @@
         app:layout_constraintVertical_bias="0.082"
         app:srcCompat="@drawable/log_erp" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/title_welcome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="@font/montserrat"
-        android:text="Hola!"
-        android:textColor="@color/color_text"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/desc_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
-        android:fontFamily="@font/montserrat"
-        android:text="@string/description_login"
-        android:textColor="@color/color_text"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/lnl_number_identification"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_welcome"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <!--<com.example.myfirstapp.utils.spinner.CustomSpinner
-        android:id="@+id/spinner_type_doc"
-        style="@style/MySpinner"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="41dp"
-        android:background="@drawable/bg_spinner"
-        android:dropDownVerticalOffset="40dp" />-->
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/lnl_number_identification"
@@ -271,20 +227,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.977" />
-
-    <TextView
-        android:id="@+id/login_version"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/montserrat"
-        android:text="V."
-        android:textSize="9sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.95"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

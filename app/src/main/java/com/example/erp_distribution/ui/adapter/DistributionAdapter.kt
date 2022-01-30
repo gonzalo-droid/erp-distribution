@@ -11,7 +11,7 @@ import com.example.erp_distribution.data.response.Distributions
 import com.example.erp_distribution.utils.inflate
 import kotlinx.android.synthetic.main.item_distribution.view.*
 
-class DistributionAdapter  (private val listener: (Int, Distributions, Int) -> Unit) : RecyclerView.Adapter<DistributionAdapter.CommentHolder>() {
+class DistributionAdapter  (private val listener: (Int, Distributions) -> Unit) : RecyclerView.Adapter<DistributionAdapter.CommentHolder>() {
     var data: ArrayList<Distributions> = arrayListOf()
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -24,9 +24,26 @@ class DistributionAdapter  (private val listener: (Int, Distributions, Int) -> U
     override fun getItemViewType(position: Int) = if (position == 0) 0 else 1
 
     class CommentHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind( distribution: Distributions, listener: (Int, Distributions, Int) -> Unit) = with(itemView) {
+        fun bind( distribution: Distributions, listener: (Int, Distributions) -> Unit) = with(itemView) {
 
-            tv_title_distribution.text = distribution.levelAroundName
+            tv_title_distribution.text = distribution.distributionNameLevelAroundNumber
+            tv_title_distribution.setTextColor(context.getColor(R.color.white))
+            if(distribution.status.equals("Vendido")){
+
+                tv_title_distribution.setBackgroundColor(context.getColor(R.color.red))
+            }else if(distribution.status.equals("Separado")){
+
+                tv_title_distribution.setBackgroundColor(context.getColor(R.color.orange))
+            }else{
+
+                tv_title_distribution.setBackgroundColor(context.getColor(R.color.green))
+            }
+
+
+            tv_title_distribution.setOnClickListener {
+                listener(0, distribution)
+            }
+
         }
 
         companion object {

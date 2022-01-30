@@ -2,26 +2,27 @@ package com.example.erp_distribution.data.response
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class ProjectResponse(
     @SerializedName("active")
-    var active: String,
+    var active: String="",
     @SerializedName("dep_name")
-    var depName: String,
+    var depName: String="",
     @SerializedName("description")
-    var description: String,
+    var description: String="",
     @SerializedName("dis_name")
-    var disName: String,
+    var disName: String="",
     @SerializedName("end_date")
-    var endDate: String,
+    var endDate: String="",
     @SerializedName("id")
-    var id: Int,
+    var id: Int=0,
     @SerializedName("pro_name")
-    var proName: String,
+    var proName: String="",
     @SerializedName("project_name")
-    var projectName: String,
+    var projectName: String="",
     @SerializedName("start_date")
-    var startDate: String,
+    var startDate: String="",
     @SerializedName("status")
-    var status: String
-)
+    var status: String=""
+) : Serializable

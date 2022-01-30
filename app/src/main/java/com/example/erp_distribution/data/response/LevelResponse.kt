@@ -2,5 +2,16 @@ package com.example.erp_distribution.data.response
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-class LevelResponse : ArrayList<LevelResponseItem>()
+
+data class LevelResponse(
+    @SerializedName("active")
+    var active: String="",
+    @SerializedName("id")
+    var id: Int=0,
+    @SerializedName("level_name")
+    var levelName: String=""
+) : Serializable
+
+
