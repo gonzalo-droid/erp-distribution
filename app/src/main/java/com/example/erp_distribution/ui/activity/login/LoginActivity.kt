@@ -3,7 +3,7 @@ package com.example.erp_distribution.ui.activity.login
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.erp_distribution.databinding.ActivityLoginBinding
-import com.example.erp_distribution.ui.activity.distribution.DistributionMapActivity
+import com.example.erp_distribution.ui.activity.distribution.DistributionActivity
 import com.example.erp_distribution.utils.*
 
 class LoginActivity : AppCompatActivity() {
@@ -21,6 +21,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun signIn() {
-        startActivityTo(DistributionMapActivity::class.java)
+        startActivityTo(DistributionActivity::class.java)
     }
 }

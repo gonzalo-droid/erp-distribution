@@ -11,4 +11,8 @@ data class TowerResponse(
     var id: Int = 0,
     @SerializedName("tower_name")
     var towerName: String =""
-) : Serializable
+) : Serializable{
+    override fun toString(): String {
+        return towerName
+    }
+}

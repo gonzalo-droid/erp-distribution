@@ -25,4 +25,8 @@ data class ProjectResponse(
     var startDate: String="",
     @SerializedName("status")
     var status: String=""
-) : Serializable
+) : Serializable {
+    override fun toString(): String {
+        return projectName
+    }
+}

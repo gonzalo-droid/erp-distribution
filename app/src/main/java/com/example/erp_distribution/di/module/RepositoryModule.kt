@@ -1,6 +1,7 @@
 package com.example.erp_distribution.di.module
 
 import com.example.erp_distribution.data.repository.DistributionRepository
+import com.example.erp_distribution.data.repository.SaleDetailRepository
 import com.example.erp_distribution.data.retrofit.ApiService
 import dagger.Module
 import dagger.Provides
@@ -12,4 +13,8 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun distributionRepository(apiService: ApiService) = DistributionRepository(apiService)
+
+    @Provides
+    @Singleton
+    fun saleDetailRepository(apiService: ApiService) = SaleDetailRepository(apiService)
 }

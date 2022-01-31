@@ -12,6 +12,10 @@ data class LevelResponse(
     var id: Int=0,
     @SerializedName("level_name")
     var levelName: String=""
-) : Serializable
+) : Serializable{
+    override fun toString(): String {
+        return levelName
+    }
+}
 
 

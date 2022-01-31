@@ -11,4 +11,8 @@ data class AroundResponse(
     var aroundName: String="",
     @SerializedName("id")
     var id: Int=0
-) : Serializable
+) : Serializable{
+    override fun toString(): String {
+        return aroundName
+    }
+}

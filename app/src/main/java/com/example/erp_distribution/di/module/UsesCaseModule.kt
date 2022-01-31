@@ -1,7 +1,9 @@
 package com.example.erp_distribution.di.module
 
 import com.example.erp_distribution.data.repository.DistributionRepository
+import com.example.erp_distribution.data.repository.SaleDetailRepository
 import com.example.erp_distribution.feature.distribution.*
+import com.example.erp_distribution.feature.sale.GetSaleDetailUseCase
 import dagger.Module
 import dagger.Provides
 import io.reactivex.Scheduler
@@ -54,7 +56,13 @@ class UsesCaseModule {
         @Named("ui_thread") uiThread: Scheduler
     ) = GetListProjectUseCase(executorThread, uiThread, repository)
 
-
+    @Provides
+    @Singleton
+    fun getSaleDetailUseCase(
+        repository: SaleDetailRepository,
+        @Named("executor_thread") executorThread: Scheduler,
+        @Named("ui_thread") uiThread: Scheduler
+    ) = GetSaleDetailUseCase(executorThread, uiThread, repository)
 
 
     /** always in bottom */

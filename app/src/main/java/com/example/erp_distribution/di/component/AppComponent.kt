@@ -7,6 +7,7 @@ import com.example.erp_distribution.di.module.NetworkModule
 import com.example.erp_distribution.di.module.RepositoryModule
 import com.example.erp_distribution.di.module.UsesCaseModule
 import com.example.erp_distribution.feature.distribution.*
+import com.example.erp_distribution.feature.sale.GetSaleDetailUseCase
 import dagger.Component
 import javax.inject.Singleton
 
@@ -21,6 +22,8 @@ interface AppComponent {
     fun getListLevelUseCase(): GetListLevelUseCase
     fun getListAroundUseCase(): GetListAroundUseCase
     fun getListProjectUseCase(): GetListProjectUseCase
+
+    fun getSaleDetailUseCase(): GetSaleDetailUseCase
 
 
 }

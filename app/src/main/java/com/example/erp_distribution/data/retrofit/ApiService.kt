@@ -1,5 +1,6 @@
 package com.example.erp_distribution.data.retrofit
 
+import com.example.erp_distribution.data.request.DistributionIdRequest
 import com.example.erp_distribution.data.request.FilterDistributionRequest
 import com.example.erp_distribution.data.response.*
 import io.reactivex.Observable
@@ -30,6 +31,12 @@ interface ApiService {
         @Url url: String,
         @HeaderMap headers: Map<String, String>
     ): Observable<List<ProjectResponse>>
+
+    @GET
+    fun getDetailSale(
+        @Url url: String,
+        @HeaderMap headers: Map<String, String>
+    ): Observable<SaleDetailResponse>
 
     @POST
     fun getListDistribution(

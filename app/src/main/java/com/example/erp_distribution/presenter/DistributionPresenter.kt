@@ -1,8 +1,10 @@
 package com.example.erp_distribution.presenter
 
+import com.example.erp_distribution.data.request.DistributionIdRequest
 import com.example.erp_distribution.data.request.FilterDistributionRequest
 import com.example.erp_distribution.data.response.*
 import com.example.erp_distribution.feature.distribution.*
+import com.example.erp_distribution.feature.sale.GetSaleDetailUseCase
 import com.example.erp_distribution.presenter.base.BasePresenter
 import io.reactivex.observers.DisposableObserver
 import org.json.JSONObject
@@ -17,6 +19,8 @@ class DistributionPresenter (
     private var getListTowerUseCase: GetListTowerUseCase,
     private var getListLevelUseCase: GetListLevelUseCase,
     private var getListProjectUseCase: GetListProjectUseCase,
+
+    private var getSaleDetailUseCase: GetSaleDetailUseCase,
 //    private var methods: Methods,
     
 ): BasePresenter<DistributionPresenter.View>() {
@@ -206,6 +210,38 @@ class DistributionPresenter (
         })
     }
 
+
+    fun getSaleDetailUseCase(
+        request: DistributionIdRequest,
+        listener: (Int, SaleDetailResponse) -> Unit
+    ) {
+//        if (!methods.isInternetConnected()) {
+//            view?.customWifi()
+//            return
+//        }
+//        view?.showLoading()
+        getSaleDetailUseCase.request = request
+        getSaleDetailUseCase.execute(object : DisposableObserver<SaleDetailResponse>() {
+            override fun onComplete() {
+                view?.hideLoading()
+            }
+
+            override fun onNext(t: SaleDetailResponse) {
+                view?.hideLoading()
+                listener(200, t)
+            }
+
+            override fun onError(e: Throwable) {
+                view?.let { v ->
+                    v.hideLoading()
+                    when(e) {
+                        is SocketTimeoutException -> v.customTimeOut()
+                        else -> listener(202, SaleDetailResponse())
+                    }
+                }
+            }
+        })
+    }
     
 
     interface View : BasePresenter.View {

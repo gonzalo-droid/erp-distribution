@@ -5,20 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.distribution.DistributionMapActivity">
+    tools:context=".ui.activity.distribution.DistributionActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/toolbar_custom"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:backgroundTint="@color/teal_700"
-            android:background="@drawable/shape_border_bottom">
+            android:background="@drawable/shape_border_bottom"
+            android:backgroundTint="@color/teal_700">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/txt_title"
@@ -27,9 +27,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
-                android:textColor="@color/white"
                 android:layout_weight="1"
-                android:text="Proyecto"
+                android:text="Inmobilaria"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -39,19 +39,19 @@
 
             <TextView
                 android:id="@+id/txt_person_let"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_margin="16dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/ic_ellipse"
+                android:elevation="2dp"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center"
                 android:text="GL"
                 android:textColor="@color/color_text"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="16dp"
-                android:elevation="2dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
@@ -66,44 +66,19 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/lnl_filter"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-
-
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_below="@+id/toolbar_custom"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="100dp"
         android:orientation="horizontal">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn_filter"
-                android:layout_width="100dp"
-                android:layout_height="40dp"
-                android:background="@drawable/shape_border_button"
-                android:drawableStart="@drawable/ic_filter"
-                android:drawableTint="@color/white"
-                android:fontFamily="@font/montserrat"
-                android:paddingStart="12dp"
-                android:paddingEnd="8dp"
-                android:text="Filtros"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <include layout="@layout/item_total" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/lnl_empty_notifications"
+        android:id="@+id/lnl_empty"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar_custom"
@@ -118,10 +93,20 @@
             app:srcCompat="@drawable/log_erp" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_fail_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/montserrat"
-            android:text="Sin resultados encontrados"
+            android:text="@string/txt_fail_search_distribution"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_start_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:text="@string/txt_start_search_distribution"
             android:textColor="@color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -138,6 +123,19 @@
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="4"
         tools:listitem="@layout/item_distribution" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Buscar"
+        android:textSize="12sp"
+        app:icon="@drawable/ic_filter" />
 
 
 </RelativeLayout>

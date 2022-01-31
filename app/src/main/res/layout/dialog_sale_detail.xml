@@ -65,6 +65,7 @@
                        android:textStyle="bold" />
 
                    <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/tv_distribution"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:background="@drawable/shape_input_text"
@@ -93,6 +94,7 @@
                        android:textStyle="bold" />
 
                    <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/tv_address"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:background="@drawable/shape_input_text"
@@ -121,6 +123,7 @@
                        android:textStyle="bold" />
 
                    <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/tv_status_distribution"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:background="@drawable/shape_input_text"
@@ -159,6 +162,7 @@
                        android:textStyle="bold" />
 
                    <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/tv_identificator"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:background="@drawable/shape_input_text"
@@ -187,6 +191,7 @@
                        android:textStyle="bold" />
 
                    <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/tv_status_sale"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:background="@drawable/shape_input_text"
@@ -215,6 +220,7 @@
                        android:textStyle="bold" />
 
                    <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/tv_date"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:background="@drawable/shape_input_text"
@@ -243,6 +249,7 @@
                        android:textStyle="bold" />
 
                    <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/tv_client"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:background="@drawable/shape_input_text"
@@ -271,6 +278,7 @@
                        android:textStyle="bold" />
 
                    <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/tv_type_document"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:background="@drawable/shape_input_text"
@@ -299,6 +307,7 @@
                        android:textStyle="bold" />
 
                    <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/tv_seller"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:background="@drawable/shape_input_text"
@@ -327,6 +336,7 @@
                        android:textStyle="bold" />
 
                    <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/tv_type_contract"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:background="@drawable/shape_input_text"
@@ -355,6 +365,7 @@
                        android:textStyle="bold" />
 
                    <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/tv_type_sale"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:background="@drawable/shape_input_text"
@@ -383,6 +394,7 @@
                        android:textStyle="bold" />
 
                    <androidx.appcompat.widget.AppCompatTextView
+                       android:id="@+id/type_payment"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:background="@drawable/shape_input_text"
@@ -527,7 +539,7 @@
                        android:textStyle="bold" />
 
                    <androidx.appcompat.widget.AppCompatTextView
-                       android:id="@+id/tv_currancy"
+                       android:id="@+id/tv_currency"
                        android:layout_width="match_parent"
                        android:layout_height="40dp"
                        android:background="@drawable/shape_input_text"
