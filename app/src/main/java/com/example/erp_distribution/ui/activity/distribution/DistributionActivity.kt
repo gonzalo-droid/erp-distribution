@@ -39,11 +39,11 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
     private lateinit var binding: ActivityDistributionBinding
 
     /* values of data at filter dialog*/
-    private var projectId = ""
-    private var levelId = ""
-    private var towerId = ""
-    private var aroundId = ""
-    private var status = ""
+    private var projectSelect = "1"
+    private var levelSelect = ""
+    private var towerSelect = ""
+    private var aroundSelect = ""
+    private var statusSelect = ""
 
     /* values of index data at filter dialog*/
     private var projectIndex = 0
@@ -108,21 +108,13 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
         spinnerAround.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, PapersManager.getArounds)
         spinnerTower.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, PapersManager.getTowers)
         spinnerLevel.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, PapersManager.getLevels)
-
         spinnerStatus.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, PapersManager.getStatus)
-
-
-        spinnerProject.setSelection(projectIndex)
-        spinnerAround.setSelection(aroundIndex)
-        spinnerTower.setSelection(towerIndex)
-        spinnerLevel.setSelection(levelIndex)
-        spinnerStatus.setSelection(statusIndex)
 
 
         spinnerProject.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
                 val select = spinnerProject.selectedItem as ProjectResponse
-                projectId = select.id.toString()
+                projectSelect = select.id.toString()
                 projectIndex = position
             }
 
@@ -133,7 +125,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
         spinnerAround.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
                 val select = spinnerAround.selectedItem as AroundResponse
-                aroundId = select.id.toString()
+                aroundSelect = select.id.toString()
                 aroundIndex = position
             }
 
@@ -144,7 +136,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
         spinnerTower.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
                 val select = spinnerTower.selectedItem as TowerResponse
-                towerId = select.id.toString()
+                towerSelect = select.id.toString()
                 towerIndex = position
             }
 
@@ -155,7 +147,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
         spinnerLevel.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
                 val select = spinnerLevel.selectedItem as LevelResponse
-                levelId = select.id.toString()
+                levelSelect = select.id.toString()
                 levelIndex = position
             }
 
@@ -166,7 +158,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
         spinnerStatus.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
                 val select = spinnerStatus.selectedItem as StatusResponse
-                status = select.name
+                statusSelect = select.name
                 statusIndex = position
             }
 
@@ -174,14 +166,31 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
 
         }
 
+        spinnerProject.setSelection(projectIndex)
+        spinnerAround.setSelection(aroundIndex)
+        spinnerTower.setSelection(towerIndex)
+        spinnerLevel.setSelection(levelIndex)
+        spinnerStatus.setSelection(statusIndex)
+
+
         btnFilter.setOnClickListener {
-            requestListDistribution(FilterDistributionRequest().apply {
-                this.projectId = projectId
-                this.aroundSelect = aroundId
-                this.levelSelect = levelId
-                this.stageSelect = towerId
-                this.status = status
-            })
+            var request = FilterDistributionRequest().apply {
+                this.projectId = projectSelect
+                this.aroundId = aroundSelect
+                this.levelId = levelSelect
+                this.stageId = towerSelect
+                this.statusId = statusSelect
+            }
+            requestListDistribution(request)
+
+            Log.d("Request list",
+                "project: ${projectSelect} -" +
+                        "aroundId: ${aroundSelect}" +
+                        " -levelId: ${levelSelect}" +
+                        " -towerId: ${towerSelect}" +
+                        "-status: ${statusSelect}"
+                )
+
             dialog.dismiss()
         }
 
@@ -202,10 +211,10 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
     private fun requestListDistribution(request: FilterDistributionRequest) {
         distributionPresenter.getListDistributionUseCase(FilterDistributionRequest().apply {
             this.projectId = request.projectId
-            this.aroundSelect = request.aroundSelect
-            this.levelSelect = request.levelSelect
-            this.stageSelect = request.stageSelect
-            this.status = request.status
+            this.aroundId = request.aroundId
+            this.levelId = request.levelId
+            this.stageId = request.stageId
+            this.statusId = request.statusId
         })
     }
 
