@@ -7,10 +7,7 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.appcompat.widget.AppCompatTextView
@@ -20,23 +17,41 @@ import com.example.erp_distribution.data.request.FilterDistributionRequest
 import com.example.erp_distribution.data.response.*
 import com.example.erp_distribution.databinding.ActivityDistributionBinding
 import com.example.erp_distribution.presenter.DistributionPresenter
+import com.example.erp_distribution.presenter.sale.SaleDetailPresenter
 import com.example.erp_distribution.ui.adapter.DistributionAdapter
-import com.example.erp_distribution.ui.adapter.TotalAdapter
 import com.example.erp_distribution.ui.base.ErpBaseActivity
 import com.example.erp_distribution.utils.PapersManager
 import kotlinx.android.synthetic.main.item_total.view.*
 import java.io.Serializable
 import javax.inject.Inject
 
-class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
+class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, SaleDetailPresenter.View {
 
 
     @Inject
     lateinit var distributionPresenter: DistributionPresenter
 
+    @Inject
+    lateinit var saleDetailPresenter: SaleDetailPresenter
+
+
     private var distributionAdapter: DistributionAdapter? = null
-    private var totalAdapter: TotalAdapter? = null
     private lateinit var binding: ActivityDistributionBinding
+
+    /* values of data at filter dialog*/
+    private var projectId = ""
+    private var levelId = ""
+    private var towerId = ""
+    private var aroundId = ""
+    private var status = ""
+
+    /* values of index data at filter dialog*/
+    private var projectIndex = 0
+    private var levelIndex = 0
+    private var towerIndex = 0
+    private var aroundIndex = 0
+    private var statusIndex = 0
+
 
     override fun getView(): Int = R.layout.activity_distribution
 
@@ -48,7 +63,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
 
         component.inject(this)
         distributionPresenter.attachView(this)
-
+        saleDetailPresenter.attachView(this)
 
         binding.lnlEmpty.visibility = View.VISIBLE
         binding.tvFailSearch.visibility = View.GONE
@@ -96,16 +111,19 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
 
         spinnerStatus.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, PapersManager.getStatus)
 
-        var projectId = ""
-        var levelId = ""
-        var towerId = ""
-        var aroundId = ""
-        var status = ""
+
+        spinnerProject.setSelection(projectIndex)
+        spinnerAround.setSelection(aroundIndex)
+        spinnerTower.setSelection(towerIndex)
+        spinnerLevel.setSelection(levelIndex)
+        spinnerStatus.setSelection(statusIndex)
+
 
         spinnerProject.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
                 val select = spinnerProject.selectedItem as ProjectResponse
                 projectId = select.id.toString()
+                projectIndex = position
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -116,6 +134,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
             override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
                 val select = spinnerAround.selectedItem as AroundResponse
                 aroundId = select.id.toString()
+                aroundIndex = position
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -126,6 +145,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
             override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
                 val select = spinnerTower.selectedItem as TowerResponse
                 towerId = select.id.toString()
+                towerIndex = position
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -136,6 +156,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
             override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
                 val select = spinnerLevel.selectedItem as LevelResponse
                 levelId = select.id.toString()
+                levelIndex = position
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -146,6 +167,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
             override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
                 val select = spinnerStatus.selectedItem as StatusResponse
                 status = select.name
+                statusIndex = position
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -250,10 +272,10 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
             })
 
         var listStatus : ArrayList<StatusResponse> = arrayListOf()
-        listStatus.add(0, StatusResponse("ACTIVO",0,"Todos"))
-        listStatus.add( StatusResponse("ACTIVO",0,"Libre"))
-        listStatus.add( StatusResponse("ACTIVO",0,"Vendido"))
-        listStatus.add( StatusResponse("ACTIVO",0,"Separado"))
+        listStatus.add(0, StatusResponse("ACTIVO",1,"","Todos"))
+        listStatus.add( StatusResponse("ACTIVO",2,"free","Libre"))
+        listStatus.add( StatusResponse("ACTIVO",3,"sold","Vendido"))
+        listStatus.add( StatusResponse("ACTIVO",4,"separated","Separado"))
         PapersManager.getStatus = listStatus
     }
 
@@ -285,7 +307,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
 
     private fun requestSaleDetail(distribution: Distributions) {
 
-        distributionPresenter.getSaleDetailUseCase(DistributionIdRequest().apply {
+        saleDetailPresenter.getSaleDetailUseCase(DistributionIdRequest().apply {
             this.distributionId = distribution.id
         },listener = { i, response  ->
                 when (i) {
@@ -391,6 +413,12 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
         val tvRegister: AppCompatTextView =
             dialog.findViewById<View>(R.id.tv_register) as AppCompatTextView
 
+        val lnlExtraData: LinearLayout =
+            dialog.findViewById<View>(R.id.lnl_all_data) as LinearLayout
+
+
+
+
         tvDistribution.text = data.sale.distribution
         tvAddress.text = data.sale.address
         tvStatusDistribution.text = data.sale.statuDistribution
@@ -419,6 +447,13 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
         tvLastUpdate.text = data.sale.lastUpdate
         tvRegister.text = data.sale.register
 
+
+        if(data.sale.indentificator.equals("")){
+            lnlExtraData.visibility = View.GONE
+        }else{
+            lnlExtraData.visibility = View.VISIBLE
+        }
+
         btnClose.setOnClickListener {
             dialog.dismiss()
         }
@@ -436,12 +471,14 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
 
     override fun onResume() {
         distributionPresenter.attachView(this)
+        saleDetailPresenter.attachView(this)
         super.onResume()
     }
 
     @SuppressLint("MissingPermission")
     override fun onPause() {
         distributionPresenter.detachView()
+        saleDetailPresenter.detachView()
         super.onPause()
     }
 
@@ -450,7 +487,6 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
         when (status) {
             200 -> {
                 val response = args[0] as DistributionResponse
-                Log.d("Test", response.toString())
                 if(response.status.equals("success")){
                     PapersManager.responseDistributions = response
                     binding.recycler.visibility = View.VISIBLE
@@ -483,13 +519,13 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View {
         }
     }
 
-    override fun customWifi() {
+    override fun saleDetailSuccessPresenter(status: Int, vararg args: Serializable) {
         TODO("Not yet implemented")
     }
-
 
     override fun customTimeOut() {
         TODO("Not yet implemented")
     }
+
 
 }

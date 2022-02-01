@@ -1,12 +1,11 @@
 package com.example.erp_distribution.ui.application
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
-import android.util.Log
 import com.example.erp_distribution.di.component.AppComponent
 import com.example.erp_distribution.di.component.DaggerAppComponent
 import com.example.erp_distribution.di.module.AppModule
+import com.example.erp_distribution.utils.Methods
 import io.paperdb.Paper
 import java.util.*
 
@@ -15,6 +14,7 @@ open class ErpApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         Paper.init(this)
+        Methods.init(this)
 
         appComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
 

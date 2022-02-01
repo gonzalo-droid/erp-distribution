@@ -1,8 +1,7 @@
 package com.example.erp_distribution.di.module
 
-import com.example.erp_distribution.BuildConfig
 import com.example.erp_distribution.data.retrofit.ApiService
-import com.example.erp_distribution.utils.Util
+import com.example.erp_distribution.utils.Methods
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import com.squareup.moshi.Moshi
@@ -37,7 +36,7 @@ class NetworkModule {
                          okHttpClient: OkHttpClient
     ) : Retrofit {
         return Retrofit.Builder()
-            .baseUrl(Util.URL_BASE)
+            .baseUrl(Methods.URL_BASE)
             .addCallAdapterFactory(rxJava2CallAdapterFactory)
             .addConverterFactory(providesGsonConverterFactory)// TODO ANTES GsonConverterFactory.create() DESPUES providesGsonConverterFactory
             .client(okHttpClient)

@@ -17,7 +17,7 @@
 
     <string name="error_login">Hemos detectado un comportamiento extraño, por favor intenta más tarde (1)</string>
     <string name="tv_accept">Aceptar</string>
-    <string name="tv_no_internet">Advertencia</string>
+    <string name="tv_no_internet">No hay conexión a internet</string>
     <string name="txt_fail_search_distribution">Sin resultados encontrados</string>
     <string name="txt_start_search_distribution">Inicia tu búsqueda</string>
     <string name="txt_next">Siguiente</string>

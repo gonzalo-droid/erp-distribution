@@ -62,7 +62,7 @@ abstract class ErpBaseActivity : BaseActivity() {
     }
 
 
-    fun customWifiBase(returnAction: (Boolean) -> Unit) {
+    fun customWifi() {
         val dialog = Dialog(getContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_wifi)
@@ -78,12 +78,30 @@ abstract class ErpBaseActivity : BaseActivity() {
         dialog.setCancelable(false)
         dialog.show()
         btnWifi.setOnClickListener {
-            returnAction(true)
             dialog.dismiss()
         }
     }
 
 
+//    fun customTimeOut() {
+//        val dialog = Dialog(getContext())
+//        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+//        dialog.setContentView(R.layout.dialog_timeout)
+//        val btnTimeOut: AppCompatButton =
+//            dialog.findViewById<android.view.View>(R.id.btn_timeout) as AppCompatButton
+//
+//        dialog.window?.setLayout(
+//            ViewGroup.LayoutParams.MATCH_PARENT,
+//            ViewGroup.LayoutParams.WRAP_CONTENT
+//        )
+//        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent);
+//        dialog.window?.attributes?.windowAnimations = R.style.AppTheme_Slide
+//        dialog.setCancelable(false)
+//        dialog.show()
+//        btnTimeOut.setOnClickListener {
+//            dialog.dismiss()
+//        }
+//    }
 
     fun customDialog(title: String, text: String) {
         val dialog = Dialog(this)

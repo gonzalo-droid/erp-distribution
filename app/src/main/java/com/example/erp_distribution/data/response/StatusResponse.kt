@@ -9,9 +9,11 @@ data class StatusResponse (
     @SerializedName("id")
     var id: Int=0,
     @SerializedName("name")
-    var name: String=""
+    var name: String="",
+    @SerializedName("name_show")
+    var nameShow: String=""
 ) : Serializable {
     override fun toString(): String {
-        return name
+        return nameShow
     }
 }
