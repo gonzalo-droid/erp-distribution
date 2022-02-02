@@ -424,7 +424,8 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
 
         val lnlExtraData: LinearLayout =
             dialog.findViewById<View>(R.id.lnl_all_data) as LinearLayout
-
+        val tvTypeSale: AppCompatTextView =
+            dialog.findViewById<View>(R.id.tv_type_sale) as AppCompatTextView
 
 
 
@@ -455,7 +456,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
         tvTotalDollars.text = data.sale.totalDollars
         tvLastUpdate.text = data.sale.lastUpdate
         tvRegister.text = data.sale.register
-
+        tvTypeSale.text = data.sale.typeSale
 
         if(data.sale.indentificator.equals("")){
             lnlExtraData.visibility = View.GONE

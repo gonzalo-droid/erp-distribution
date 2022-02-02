@@ -21,6 +21,8 @@
     <color name="orange">#E77C40</color>
     <color name="orange_light">#FFF6EF</color>
 
+    <color name="blue">#0B46C8</color>
+    <color name="yellow">#FFEB3B</color>
 
     <color name="color_error">#E63E51</color>
 </resources>

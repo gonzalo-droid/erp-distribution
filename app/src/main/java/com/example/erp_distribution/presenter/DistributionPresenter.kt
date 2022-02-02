@@ -13,7 +13,6 @@ import java.net.SocketTimeoutException
 
 class DistributionPresenter (
     private var getListDistributionUseCase: GetListDistributionUseCase,
-
     private var getListAroundUseCase: GetListAroundUseCase,
     private var getListTowerUseCase: GetListTowerUseCase,
     private var getListLevelUseCase: GetListLevelUseCase,

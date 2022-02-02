@@ -119,6 +119,7 @@
         android:layout_below="@+id/lnl_filter"
         android:layout_marginTop="11dp"
         android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
         android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:spanCount="4"

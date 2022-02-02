@@ -1,6 +1,7 @@
 package com.example.erp_distribution.ui.adapter
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.os.Build
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import com.example.erp_distribution.R
 import com.example.erp_distribution.data.response.Distributions
 import com.example.erp_distribution.utils.inflate
 import kotlinx.android.synthetic.main.item_distribution.view.*
+import kotlin.random.Random
 
 class DistributionAdapter  (private val listener: (Int, Distributions) -> Unit) : RecyclerView.Adapter<DistributionAdapter.CommentHolder>() {
     var data: ArrayList<Distributions> = arrayListOf()
@@ -26,16 +28,30 @@ class DistributionAdapter  (private val listener: (Int, Distributions) -> Unit) 
     class CommentHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind( distribution: Distributions, listener: (Int, Distributions) -> Unit) = with(itemView) {
 
+//            tv_ic_circle.backgroundTintList = ColorStateList.valueOf(context.getColor(R.color.yellow))
             tv_title_distribution.text = distribution.distributionNameLevelAroundNumber
-            tv_title_distribution.setTextColor(context.getColor(R.color.white))
+
+            var i = Random.nextInt(1,3)
+
             if(distribution.status.equals("Vendido")){
 
-                tv_title_distribution.setBackgroundColor(context.getColor(R.color.red))
+                if(i==2){
+                    tv_title_distribution.setTextColor(context.getColor(R.color.white))
+                    tv_title_distribution.setBackgroundColor(context.getColor(R.color.blue))
+                }else{
+                    tv_title_distribution.setTextColor(context.getColor(R.color.black))
+                    tv_title_distribution.setBackgroundColor(context.getColor(R.color.yellow))
+
+                }
+//                tv_title_distribution.setBackgroundColor(context.getColor(R.color.red))
             }else if(distribution.status.equals("Separado")){
 
+                tv_title_distribution.setTextColor(context.getColor(R.color.white))
                 tv_title_distribution.setBackgroundColor(context.getColor(R.color.orange))
             }else{
 
+
+                tv_title_distribution.setTextColor(context.getColor(R.color.black))
                 tv_title_distribution.setBackgroundColor(context.getColor(R.color.green))
             }
 
