@@ -20,7 +20,7 @@
         <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/drawable/shape_input_text.xml" value="0.2869791666666667" />
         <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/drawable/shape_item_distributrion.xml" value="0.30572916666666666" />
         <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/font/montserrat.xml" value="0.3078125" />
-        <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/layout/activity_distribution.xml" value="0.67" />
+        <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/layout/activity_distribution.xml" value="0.6044260027662517" />
         <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/layout/activity_distribution_map.xml" value="0.33" />
         <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/layout/activity_login.xml" value="0.67" />
         <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/layout/activity_main.xml" value="0.30416666666666664" />
@@ -33,7 +33,7 @@
         <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/layout/dialog_wifi.xml" value="0.30416666666666664" />
         <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/layout/item_distribution.xml" value="1.25" />
         <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/layout/item_spinner.xml" value="0.30416666666666664" />
-        <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/layout/item_total.xml" value="0.67" />
+        <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/layout/item_total.xml" value="0.5" />
         <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.14895833333333333" />
         <entry key="..\:/ANDROID-PROJECT/erpdistribution/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.14895833333333333" />
       </map>
