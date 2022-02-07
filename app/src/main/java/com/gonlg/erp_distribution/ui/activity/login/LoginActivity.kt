@@ -1,18 +1,21 @@
 package com.gonlg.erp_distribution.ui.activity.login
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.gonlg.erp_distribution.R
 import com.gonlg.erp_distribution.databinding.ActivityLoginBinding
 import com.gonlg.erp_distribution.presenter.LoginPresenter
 import com.gonlg.erp_distribution.presenter.sale.SaleDetailPresenter
 import com.gonlg.erp_distribution.ui.activity.distribution.DistributionActivity
+import com.gonlg.erp_distribution.ui.base.ErpBaseActivity
 import com.gonlg.erp_distribution.utils.*
 import java.io.Serializable
 import javax.inject.Inject
 
-class LoginActivity : AppCompatActivity(), LoginPresenter.View {
+class LoginActivity : ErpBaseActivity(), LoginPresenter.View {
 
     @Inject
     lateinit var loginPresenter: LoginPresenter
@@ -20,6 +23,8 @@ class LoginActivity : AppCompatActivity(), LoginPresenter.View {
 
 
     private lateinit var binding: ActivityLoginBinding
+
+    override fun getView(): Int = R.layout.activity_login
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +57,10 @@ class LoginActivity : AppCompatActivity(), LoginPresenter.View {
     }
 
     override fun loginSuccessPresenter(status: Int, vararg args: Serializable) {
+        TODO("Not yet implemented")
+    }
+
+    override fun customTimeOut() {
         TODO("Not yet implemented")
     }
 

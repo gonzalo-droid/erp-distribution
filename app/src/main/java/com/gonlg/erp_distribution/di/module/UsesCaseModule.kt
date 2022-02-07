@@ -67,7 +67,7 @@ class UsesCaseModule {
         @Named("ui_thread") uiThread: Scheduler
     ) = GetSaleDetailUseCase(executorThread, uiThread, repository)
 
-
+    @Provides
     @Singleton
     fun signInUseCase(
         repository: LoginRepository,
@@ -75,6 +75,7 @@ class UsesCaseModule {
         @Named("ui_thread") uiThread: Scheduler
     ) = SignInUseCase(executorThread, uiThread, repository)
 
+    @Provides
     @Singleton
     fun codeCompanyUseCase(
         repository: LoginRepository,
