@@ -11,7 +11,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.example.erp_distribution"
+        applicationId "com.gonlg.erp_distribution"
         minSdk 23
         targetSdk 31
         versionCode 1
