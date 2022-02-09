@@ -8,6 +8,7 @@ import com.gonlg.erp_distribution.data.response.ProjectResponse
 import com.gonlg.erp_distribution.data.retrofit.ApiService
 import com.gonlg.erp_distribution.utils.Methods.Companion.URL_BASE
 import com.gonlg.erp_distribution.utils.Methods.Companion.URL_COMPANY
+import com.gonlg.erp_distribution.utils.PapersManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -39,7 +40,7 @@ class LoginRepository(var apiService: ApiService) {
 
     companion object {
 
-        val URL_LOGIN = "$URL_COMPANY/report-distribution/filter"
+        val URL_LOGIN = "${PapersManager.urlBase}/login"
 
         val URL_CODE_COMPANY = "https://solticrm.com/api/erp-company-code"
 

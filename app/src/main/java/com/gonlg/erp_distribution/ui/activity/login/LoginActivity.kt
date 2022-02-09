@@ -135,8 +135,8 @@ class LoginActivity : ErpBaseActivity(), LoginPresenter.View {
             200 -> {
                 val response = args[0] as LoginResponse
                 if(response.success){
-                    PapersManager.token = response.token
-
+                    PapersManager.token = "Bearer ${response.token}"
+                    Toast.makeText(this,"success", Toast.LENGTH_SHORT).show()
                     startActivityTo(DistributionActivity::class.java)
                 }else{
                     Toast.makeText(this,"Incorrecto email o contraseña", Toast.LENGTH_SHORT).show()

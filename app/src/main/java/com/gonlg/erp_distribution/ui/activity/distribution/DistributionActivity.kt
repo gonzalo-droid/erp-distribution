@@ -370,6 +370,8 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
             dialog.findViewById<View>(R.id.tv_identificator) as AppCompatTextView
         val tvStatusSale: AppCompatTextView =
             dialog.findViewById<View>(R.id.tv_status_sale) as AppCompatTextView
+        val tvStatus: AppCompatTextView =
+            dialog.findViewById<View>(R.id.tv_status) as AppCompatTextView
         val tvDate: AppCompatTextView =
             dialog.findViewById<View>(R.id.tv_date) as AppCompatTextView
         val tvClient: AppCompatTextView =
@@ -412,6 +414,8 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
             dialog.findViewById<View>(R.id.tv_last_update) as AppCompatTextView
         val tvRegister: AppCompatTextView =
             dialog.findViewById<View>(R.id.tv_register) as AppCompatTextView
+        val tvRefinance: AppCompatTextView =
+            dialog.findViewById<View>(R.id.tv_refinance) as AppCompatTextView
 
         val lnlExtraData: LinearLayout =
             dialog.findViewById<View>(R.id.lnl_all_data) as LinearLayout
@@ -425,6 +429,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
         tvStatusDistribution.text = data.sale.statuDistribution
         tvIdentificator.text = data.sale.indentificator
         tvStatusSale.text = data.sale.statuSale
+        tvStatus.text = data.sale.status
         tvDate.text = data.sale.date
         tvClient.text = data.sale.client
         tvTypeDocument.text = data.sale.dni
@@ -447,6 +452,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
         tvTotalDollars.text = data.sale.totalDollars
         tvLastUpdate.text = data.sale.lastUpdate
         tvRegister.text = data.sale.register
+        tvRefinance.text = data.sale.refinance
         tvTypeSale.text = data.sale.typeSale
 
         if(data.sale.indentificator.equals("")){

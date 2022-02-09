@@ -25,6 +25,8 @@ data class SaleDetailResponse(
         var statuDistribution: String = "",
         @SerializedName("Estado de venta")
         var statuSale: String = "",
+        @SerializedName("Estado")
+        var status: String = "",
         @SerializedName("Fecha")
         var date: String = "",
         @SerializedName("Identificador")
@@ -51,6 +53,8 @@ data class SaleDetailResponse(
         var priceSoles: String = "",
         @SerializedName("REGISTRO")
         var register: String = "",
+        @SerializedName("REFINANCIAR")
+        var refinance: String = "",
         @SerializedName("Tipo de Contrato")
         var typeContract: String = "",
         @SerializedName("Tipo de Moneda")

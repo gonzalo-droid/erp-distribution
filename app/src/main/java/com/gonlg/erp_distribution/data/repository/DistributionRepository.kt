@@ -83,7 +83,7 @@ class DistributionRepository(var apiService: ApiService) {
 
         val URL_TOWER =  "${PapersManager.urlBase}/all_towers"
 
-        val TOKEN = PapersManager.token
+        val TOKEN =  PapersManager.token
 
 
     }

@@ -28,7 +28,7 @@ l
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
-                android:text="Inmobilaria"
+                android:text="Solti Inmobilaria"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +38,7 @@ l
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
+                android:visibility="gone"
                 android:id="@+id/txt_person_let"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
