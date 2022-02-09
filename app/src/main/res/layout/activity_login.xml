@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tv_code_company"
+                    android:id="@+id/ed_code_company"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_input_text"
@@ -85,16 +85,17 @@
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:layout_marginLeft="5dp"
             android:id="@+id/btn_validate_code"
             android:layout_gravity="bottom"
-            android:layout_width="80dp"
-            android:layout_height="45dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/shape_input_text"
             android:backgroundTint="@color/teal_700"
             android:fontFamily="@font/montserrat"
-            android:text="Validar"
+            android:src="@drawable/ic_close"
+            android:tint="@color/white"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textStyle="bold"
@@ -138,11 +139,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/til_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tv_email"
+                    android:id="@+id/et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat"
@@ -203,7 +205,7 @@
             app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/txt_input_password"
+                android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_input_text"

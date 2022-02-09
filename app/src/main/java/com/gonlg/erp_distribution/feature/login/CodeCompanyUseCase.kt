@@ -2,6 +2,7 @@ package com.gonlg.erp_distribution.feature.login
 
 import com.gonlg.erp_distribution.data.repository.LoginRepository
 import com.gonlg.erp_distribution.data.request.CodeCompanyRequest
+import com.gonlg.erp_distribution.data.request.DistributionIdRequest
 import com.gonlg.erp_distribution.data.request.LoginRequest
 import com.gonlg.erp_distribution.data.response.CodeCompanyResponse
 import com.gonlg.erp_distribution.data.response.LoginResponse
@@ -14,8 +15,8 @@ class CodeCompanyUseCase(
     uiThread: Scheduler,
     private var repository: LoginRepository
 ) : UseCase<CodeCompanyResponse>(executorThread, uiThread) {
+    var request = CodeCompanyRequest()
     override fun createObservableUseCase(): Observable<CodeCompanyResponse> {
-        val request = CodeCompanyRequest()
         return repository.codeCompany(request)
     }
 }

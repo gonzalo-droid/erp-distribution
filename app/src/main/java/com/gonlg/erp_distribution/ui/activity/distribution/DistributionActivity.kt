@@ -182,15 +182,6 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
                 this.statusId = statusSelect
             }
             requestListDistribution(request)
-
-            Log.d("Request list",
-                "project: ${projectSelect} -" +
-                        "aroundId: ${aroundSelect}" +
-                        " -levelId: ${levelSelect}" +
-                        " -towerId: ${towerSelect}" +
-                        "-status: ${statusSelect}"
-                )
-
             dialog.dismiss()
         }
 

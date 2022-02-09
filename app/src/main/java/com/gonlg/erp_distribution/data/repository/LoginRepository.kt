@@ -41,7 +41,7 @@ class LoginRepository(var apiService: ApiService) {
 
         val URL_LOGIN = "$URL_COMPANY/report-distribution/filter"
 
-        val URL_CODE_COMPANY = "$URL_COMPANY/report-distribution/filter"
+        val URL_CODE_COMPANY = "https://solticrm.com/api/erp-company-code"
 
 
 

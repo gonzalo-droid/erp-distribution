@@ -22,6 +22,15 @@ object PapersManager {
             return Paper.book(BuildConfig.FLAVOR).read("responseSaleDetail", SaleDetailResponse())
         }
 
+    var responseCodeCompany: CodeCompanyResponse
+        set(value) {
+            Paper.book(BuildConfig.FLAVOR).write("responseCodeCompany", value)
+        }
+        get() {
+            return Paper.book(BuildConfig.FLAVOR).read("responseCodeCompany", CodeCompanyResponse())
+        }
+
+
     var getLevels: ArrayList<LevelResponse>
         set(value) {
             Paper.book(BuildConfig.FLAVOR).write("getLevels", value)
@@ -60,5 +69,21 @@ object PapersManager {
         }
         get() {
             return Paper.book(BuildConfig.FLAVOR).read("getStatus", arrayListOf())
+        }
+
+    var token: String
+        set(value) {
+            Paper.book(BuildConfig.FLAVOR).write("token", value)
+        }
+        get() {
+            return Paper.book(BuildConfig.FLAVOR).read("token", "")
+        }
+
+    var urlBase: String
+        set(value) {
+            Paper.book(BuildConfig.FLAVOR).write("urlBase", value)
+        }
+        get() {
+            return Paper.book(BuildConfig.FLAVOR).read("urlBase", "")
         }
 }

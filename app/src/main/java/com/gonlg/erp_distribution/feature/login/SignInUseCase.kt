@@ -12,8 +12,8 @@ class SignInUseCase (
     uiThread: Scheduler,
     private var repository: LoginRepository
 ) : UseCase<LoginResponse>(executorThread, uiThread) {
+    var request = LoginRequest()
     override fun createObservableUseCase(): Observable<LoginResponse> {
-        val request = LoginRequest()
         return repository.signIn(request)
     }
 }

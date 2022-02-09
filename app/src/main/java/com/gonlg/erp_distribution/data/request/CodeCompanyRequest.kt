@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class CodeCompanyRequest (
-    @SerializedName("code") var cpde: String = "",
+    @SerializedName("code") var code: String = "",
 ) : Serializable

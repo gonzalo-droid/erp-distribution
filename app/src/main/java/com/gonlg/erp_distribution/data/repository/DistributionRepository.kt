@@ -4,6 +4,7 @@ import com.gonlg.erp_distribution.data.request.FilterDistributionRequest
 import com.gonlg.erp_distribution.data.response.*
 import com.gonlg.erp_distribution.data.retrofit.ApiService
 import com.gonlg.erp_distribution.utils.Methods
+import com.gonlg.erp_distribution.utils.PapersManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -14,6 +15,7 @@ class DistributionRepository(var apiService: ApiService) {
         val url = URL_LIST_DISTRIBUTION
         val headers = mapOf(
             "Content-Type" to "application/json",
+            "Authorization" to TOKEN
         )
 
         return apiService.getListDistribution(url, headers, request)
@@ -25,6 +27,7 @@ class DistributionRepository(var apiService: ApiService) {
         val url = URL_TOWER
         val headers = mapOf(
             "Content-Type" to "application/json",
+            "Authorization" to TOKEN
         )
 
         return apiService.getTowers(url, headers)
@@ -36,6 +39,7 @@ class DistributionRepository(var apiService: ApiService) {
         val url = URL_LEVEL
         val headers = mapOf(
             "Content-Type" to "application/json",
+            "Authorization" to TOKEN
         )
 
         return apiService.getLevels(url, headers)
@@ -47,6 +51,7 @@ class DistributionRepository(var apiService: ApiService) {
         val url = URL_AROUND
         val headers = mapOf(
             "Content-Type" to "application/json",
+            "Authorization" to TOKEN
         )
 
         return apiService.getArounds(url, headers)
@@ -58,6 +63,7 @@ class DistributionRepository(var apiService: ApiService) {
         val url = URL_PROJECT
         val headers = mapOf(
             "Content-Type" to "application/json",
+            "Authorization" to TOKEN
         )
 
         return apiService.getProjects(url, headers)
@@ -67,15 +73,17 @@ class DistributionRepository(var apiService: ApiService) {
 
     companion object {
 
-        val URL_LIST_DISTRIBUTION =  "${Methods.URL_COMPANY}/report-distribution/filter" 
+        val URL_LIST_DISTRIBUTION =  "${PapersManager.urlBase}/report-distribution/filter" 
         
-        val URL_LEVEL =  "${Methods.URL_COMPANY}/all_levels"
+        val URL_LEVEL =  "${PapersManager.urlBase}/all_levels"
 
-        val URL_AROUND =  "${Methods.URL_COMPANY}/all_arounds"
+        val URL_AROUND =  "${PapersManager.urlBase}/all_arounds"
 
-        val URL_PROJECT =  "${Methods.URL_COMPANY}/all_projects"
+        val URL_PROJECT =  "${PapersManager.urlBase}/all_projects"
 
-        val URL_TOWER =  "${Methods.URL_COMPANY}/all_towers"
+        val URL_TOWER =  "${PapersManager.urlBase}/all_towers"
+
+        val TOKEN = PapersManager.token
 
 
     }

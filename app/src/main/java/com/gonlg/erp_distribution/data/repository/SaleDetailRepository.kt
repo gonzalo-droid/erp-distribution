@@ -5,6 +5,7 @@ import com.gonlg.erp_distribution.data.request.DistributionIdRequest
 import com.gonlg.erp_distribution.data.response.*
 import com.gonlg.erp_distribution.data.retrofit.ApiService
 import com.gonlg.erp_distribution.utils.Methods
+import com.gonlg.erp_distribution.utils.PapersManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -15,6 +16,7 @@ class SaleDetailRepository (var apiService: ApiService) {
         val url = "${URL_SALE}?distribution_id=${request.distributionId}"
         val headers = mapOf(
             "Content-Type" to "application/json",
+            "Authorization" to TOKEN,
             "Cache-Control" to "no-cache"
         )
         Log.d("Repo->",request.toString())
@@ -25,7 +27,8 @@ class SaleDetailRepository (var apiService: ApiService) {
 
     companion object {
 
-        val URL_SALE =  "${Methods.URL_COMPANY}/sale-first"
+        val URL_SALE =  "${PapersManager.urlBase}/sale-first"
+        val TOKEN = PapersManager.token
 
     }
 }
