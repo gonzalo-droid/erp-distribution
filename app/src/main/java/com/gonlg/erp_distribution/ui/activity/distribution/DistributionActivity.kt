@@ -93,7 +93,7 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
         binding.lnlFilter.visibility = View.GONE
 
 
-        binding.txtTitle.text = PapersManager.login.dataCompany.name
+        binding.txtTitle.text = prefs.nameCompany
         binding.fab.setOnClickListener { view ->
             dialogFilter()
         }

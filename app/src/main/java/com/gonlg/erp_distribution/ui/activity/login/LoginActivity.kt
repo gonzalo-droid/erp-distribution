@@ -135,20 +135,13 @@ class LoginActivity : ErpBaseActivity(), LoginPresenter.View {
                 if(response.success.equals("Y")){
                     if(response.dataLogin.success){
                         Log.d("url-->",response.dataCompany.url )
-                        Log.d("prefs -->", prefs.url.toString() )
-                        PapersManager.login = response.apply {
-                            this.dataLogin.token = "Bearer ${response.dataLogin.token}"
-                        }
 
-                        if(binding.chkRemember.isChecked){
-                            Log.d("chkRemember -->", prefs.url.toString() )
-                            prefs.email = binding.etEmail.text.toString()
-                            prefs.password = binding.etPassword.text.toString()
-                            prefs.token = PapersManager.login.dataLogin.token
-                            prefs.url = PapersManager.login.dataCompany.url
-                            prefs.nameCompany = PapersManager.login.dataCompany.name
-                            prefs.session = true
-                        }
+                        prefs.email = binding.etEmail.text.toString()
+                        prefs.password = binding.etPassword.text.toString()
+                        prefs.token = "Bearer ${response.dataLogin.token}"
+                        prefs.url = response.dataCompany.url
+                        prefs.nameCompany = response.dataCompany.name
+                        prefs.session = true
 
                         finish()
                         startActivityTo(DistributionActivity::class.java)

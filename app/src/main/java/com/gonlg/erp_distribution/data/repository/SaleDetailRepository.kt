@@ -13,10 +13,10 @@ import io.reactivex.schedulers.Schedulers
 class SaleDetailRepository (var apiService: ApiService, var prefs: Prefs) {
 
     fun getSaleDetail(request: DistributionIdRequest): Observable<SaleDetailResponse> {
-        val url = "${URL_SALE}?distribution_id=${request.distributionId}"
+        val url = "${prefs.url.toString()}${URL_SALE}?distribution_id=${request.distributionId}"
         val headers = mapOf(
             "Content-Type" to "application/json",
-            "Authorization" to TOKEN,
+            "Authorization" to prefs.token.toString(),
             "Cache-Control" to "no-cache"
         )
         Log.d("Repo->",request.toString())
@@ -28,7 +28,7 @@ class SaleDetailRepository (var apiService: ApiService, var prefs: Prefs) {
     companion object {
 
         val URL_SALE =  "${PapersManager.login.dataCompany.url}/sale-first"
-        val TOKEN = PapersManager.login.dataLogin.token
+
 
     }
 }

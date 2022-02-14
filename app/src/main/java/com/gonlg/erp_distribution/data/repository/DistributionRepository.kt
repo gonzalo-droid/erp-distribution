@@ -12,10 +12,10 @@ import io.reactivex.schedulers.Schedulers
 class DistributionRepository(var apiService: ApiService, var prefs: Prefs) {
 
     fun getListDistribution(request: FilterDistributionRequest): Observable<DistributionResponse> {
-        val url = URL_LIST_DISTRIBUTION
+        val url = "${prefs.url.toString()}${URL_LIST_DISTRIBUTION}"
         val headers = mapOf(
             "Content-Type" to "application/json",
-            "Authorization" to TOKEN
+            "Authorization" to prefs.token.toString()
         )
 
         return apiService.getListDistribution(url, headers, request)
@@ -24,10 +24,10 @@ class DistributionRepository(var apiService: ApiService, var prefs: Prefs) {
     }
 
     fun getTowers(): Observable<List<TowerResponse>> {
-        val url = URL_TOWER
+        val url = "${prefs.url.toString()}${URL_TOWER}"
         val headers = mapOf(
             "Content-Type" to "application/json",
-            "Authorization" to TOKEN
+            "Authorization" to prefs.token.toString()
         )
 
         return apiService.getTowers(url, headers)
@@ -36,10 +36,10 @@ class DistributionRepository(var apiService: ApiService, var prefs: Prefs) {
     }
 
     fun getLevels(): Observable<List<LevelResponse>> {
-        val url = URL_LEVEL
+        val url = "${prefs.url.toString()}${URL_LEVEL}"
         val headers = mapOf(
             "Content-Type" to "application/json",
-            "Authorization" to TOKEN
+            "Authorization" to prefs.token.toString()
         )
 
         return apiService.getLevels(url, headers)
@@ -48,22 +48,24 @@ class DistributionRepository(var apiService: ApiService, var prefs: Prefs) {
     }
 
     fun getArounds(): Observable<List<AroundResponse>> {
-        val url = URL_AROUND
+        val url = "${prefs.url.toString()}${URL_AROUND}"
         val headers = mapOf(
             "Content-Type" to "application/json",
-            "Authorization" to TOKEN
+            "Authorization" to prefs.token.toString()
         )
 
         return apiService.getArounds(url, headers)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+
+
     }
 
     fun getProjects(): Observable<List<ProjectResponse>> {
-        val url = URL_PROJECT
+        val url = "${prefs.url.toString()}${URL_PROJECT}"
         val headers = mapOf(
             "Content-Type" to "application/json",
-            "Authorization" to TOKEN,
+            "Authorization" to prefs.token.toString(),
             "Connection" to "close"
         )
 
@@ -74,17 +76,17 @@ class DistributionRepository(var apiService: ApiService, var prefs: Prefs) {
 
     companion object {
 
-        val URL_LIST_DISTRIBUTION =  "${PapersManager.login.dataCompany.url}/report-distribution/filter" 
-        
-        val URL_LEVEL =  "${PapersManager.login.dataCompany.url}/all_levels"
+        val URL_LIST_DISTRIBUTION =  "/report-distribution/filter"
 
-        val URL_AROUND =  "${PapersManager.login.dataCompany.url}/all_arounds"
+        val URL_LEVEL =  "/all_levels"
 
-        val URL_PROJECT =  "${PapersManager.login.dataCompany.url}/all_projects"
+        val URL_AROUND =  "/all_arounds"
 
-        val URL_TOWER =  "${PapersManager.login.dataCompany.url}/all_towers"
+        val URL_PROJECT =  "/all_projects"
 
-        val TOKEN =  PapersManager.login.dataLogin.token
+        val URL_TOWER =  "/all_towers"
+
+
 
 
     }
