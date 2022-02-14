@@ -48,7 +48,6 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
     }
-
     abstract fun getView(): Int
 
     open fun onCreate() {}

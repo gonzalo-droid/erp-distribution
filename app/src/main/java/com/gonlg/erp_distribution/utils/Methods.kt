@@ -41,8 +41,6 @@ class Methods(private val context: Context) {
 
 
     companion object {
-        val URL_BASE ="https://sistemasolti-murano.com/api/"
-        val URL_COMPANY ="https://sistemasolti-murano.com/api"
 
         @SuppressLint("StaticFieldLeak")
         private var methods: Methods? = null

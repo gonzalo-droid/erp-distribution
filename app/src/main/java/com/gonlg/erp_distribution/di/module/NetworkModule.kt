@@ -2,6 +2,7 @@ package com.gonlg.erp_distribution.di.module
 
 import com.gonlg.erp_distribution.data.retrofit.ApiService
 import com.gonlg.erp_distribution.utils.Methods
+import com.gonlg.erp_distribution.utils.PapersManager
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.GsonBuilder
 import com.squareup.moshi.Moshi
@@ -36,7 +37,7 @@ class NetworkModule {
                          okHttpClient: OkHttpClient
     ) : Retrofit {
         return Retrofit.Builder()
-            .baseUrl(Methods.URL_BASE)
+            .baseUrl("https://solticrm.com/api/erp-company-code/")
             .addCallAdapterFactory(rxJava2CallAdapterFactory)
             .addConverterFactory(providesGsonConverterFactory)// TODO ANTES GsonConverterFactory.create() DESPUES providesGsonConverterFactory
             .client(okHttpClient)

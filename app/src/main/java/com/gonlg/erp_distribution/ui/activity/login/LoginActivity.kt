@@ -6,10 +6,13 @@ import android.content.res.ColorStateList
 import android.net.UrlQuerySanitizer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.InputFilter
+import android.text.InputFilter.AllCaps
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.gonlg.erp_distribution.R
+import com.gonlg.erp_distribution.data.Prefs
 import com.gonlg.erp_distribution.data.request.CodeCompanyRequest
 import com.gonlg.erp_distribution.data.request.DistributionIdRequest
 import com.gonlg.erp_distribution.data.request.LoginRequest
@@ -23,6 +26,8 @@ import com.gonlg.erp_distribution.presenter.sale.SaleDetailPresenter
 import com.gonlg.erp_distribution.ui.activity.distribution.DistributionActivity
 import com.gonlg.erp_distribution.ui.base.ErpBaseActivity
 import com.gonlg.erp_distribution.utils.*
+import io.paperdb.BuildConfig
+import io.paperdb.Paper
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import java.io.Serializable
 import javax.inject.Inject
@@ -31,6 +36,9 @@ class LoginActivity : ErpBaseActivity(), LoginPresenter.View {
 
     @Inject
     lateinit var loginPresenter: LoginPresenter
+
+    @Inject
+    lateinit var prefs: Prefs
 
     var activeInputCode: Boolean = false
     private lateinit var binding: ActivityLoginBinding
@@ -47,30 +55,18 @@ class LoginActivity : ErpBaseActivity(), LoginPresenter.View {
         loginPresenter.attachView(this)
 
         binding.btnSignIn.setOnClickListener {
-            if(!PapersManager.responseCodeCompany.codeCompany.url.equals("")
-                && !binding.etEmail.text.isNullOrEmpty()
+            if(!binding.etEmail.text.isNullOrEmpty()
+                && !binding.etCodeCompany.text.isNullOrEmpty()
                 && !binding.etPassword.text.isNullOrEmpty()){
                 signIn()
             }else{
                 Toast.makeText(this,"Datos incorrectos", Toast.LENGTH_SHORT).show()
             }
         }
-        enableFiled(false)
 
-        binding.btnValidateCode.setOnClickListener {
-
-            if(activeInputCode){
-                if(!binding.edCodeCompany.text.isNullOrEmpty()){
-                    validateCode(binding.edCodeCompany.text.toString())
-                }else{
-                    Toast.makeText(this,"Debe ingresar el código de la empresa", Toast.LENGTH_SHORT).show()
-                }
-            }else {
-                activeInputCode = true
-                binding.edCodeCompany.isEnabled=true
-                enableFiled(false)
-            }
-
+        Paper.book(BuildConfig.FLAVOR).delete("login")
+        if(prefs.session){
+            startActivityTo(DistributionActivity::class.java)
         }
 
     }
@@ -85,13 +81,13 @@ class LoginActivity : ErpBaseActivity(), LoginPresenter.View {
                     var data = response as CodeCompanyResponse
                     if(data.success.equals("Y")){
                         PapersManager.responseCodeCompany = data
-                        PapersManager.urlBase = PapersManager.responseCodeCompany.codeCompany.url
-                        enableFiled(true)
+                        PapersManager.login.dataCompany.url = PapersManager.responseCodeCompany.codeCompany.url
+//                        enableFiled(true)
                         activeInputCode = false
-                        binding.edCodeCompany.isEnabled=false
+                        binding.etCodeCompany.isEnabled=false
                         Toast.makeText(this,"Código correcto", Toast.LENGTH_SHORT).show()
                     }else{
-                        enableFiled(false)
+//                        enableFiled(false)
 
                         Toast.makeText(this,"Código incorrecto", Toast.LENGTH_SHORT).show()
                     }
@@ -123,8 +119,10 @@ class LoginActivity : ErpBaseActivity(), LoginPresenter.View {
         binding.btnSignIn.isEnabled = value
 
     }
+
     private fun signIn() {
         loginPresenter.signInUser(LoginRequest().apply {
+            this.code = binding.etCodeCompany.text.toString()
             this.email = binding.etEmail.text.toString()
             this.password = binding.etPassword.text.toString()
         })
@@ -134,12 +132,33 @@ class LoginActivity : ErpBaseActivity(), LoginPresenter.View {
         when (status) {
             200 -> {
                 val response = args[0] as LoginResponse
-                if(response.success){
-                    PapersManager.token = "Bearer ${response.token}"
-                    Toast.makeText(this,"success", Toast.LENGTH_SHORT).show()
-                    startActivityTo(DistributionActivity::class.java)
+                if(response.success.equals("Y")){
+                    if(response.dataLogin.success){
+                        Log.d("url-->",response.dataCompany.url )
+                        Log.d("prefs -->", prefs.url.toString() )
+                        PapersManager.login = response.apply {
+                            this.dataLogin.token = "Bearer ${response.dataLogin.token}"
+                        }
+
+                        if(binding.chkRemember.isChecked){
+                            Log.d("chkRemember -->", prefs.url.toString() )
+                            prefs.email = binding.etEmail.text.toString()
+                            prefs.password = binding.etPassword.text.toString()
+                            prefs.token = PapersManager.login.dataLogin.token
+                            prefs.url = PapersManager.login.dataCompany.url
+                            prefs.nameCompany = PapersManager.login.dataCompany.name
+                            prefs.session = true
+                        }
+
+                        finish()
+                        startActivityTo(DistributionActivity::class.java)
+
+                    }else{
+                        Toast.makeText(this,"Email o contraseña son incorrectos", Toast.LENGTH_SHORT).show()
+                    }
+
                 }else{
-                    Toast.makeText(this,"Incorrecto email o contraseña", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"Código incorrecto", Toast.LENGTH_SHORT).show()
                 }
             }
             else -> {

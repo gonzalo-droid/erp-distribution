@@ -2,6 +2,7 @@ package com.gonlg.erp_distribution.ui.application
 
 import android.app.Activity
 import android.app.Application
+import com.gonlg.erp_distribution.data.Prefs
 import com.gonlg.erp_distribution.di.component.AppComponent
 import com.gonlg.erp_distribution.di.component.DaggerAppComponent
 import com.gonlg.erp_distribution.di.module.AppModule
@@ -11,10 +12,13 @@ import java.util.*
 
 open class ErpApplication : Application() {
 
+    lateinit var prefs: Prefs
+
     override fun onCreate() {
         super.onCreate()
         Paper.init(this)
         Methods.init(this)
+        prefs = Prefs(applicationContext)
 
         appComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
 

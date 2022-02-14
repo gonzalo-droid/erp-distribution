@@ -1,15 +1,15 @@
 package com.gonlg.erp_distribution.data.repository
 
+import com.gonlg.erp_distribution.data.Prefs
 import com.gonlg.erp_distribution.data.request.FilterDistributionRequest
 import com.gonlg.erp_distribution.data.response.*
 import com.gonlg.erp_distribution.data.retrofit.ApiService
-import com.gonlg.erp_distribution.utils.Methods
 import com.gonlg.erp_distribution.utils.PapersManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class DistributionRepository(var apiService: ApiService) {
+class DistributionRepository(var apiService: ApiService, var prefs: Prefs) {
 
     fun getListDistribution(request: FilterDistributionRequest): Observable<DistributionResponse> {
         val url = URL_LIST_DISTRIBUTION
@@ -63,7 +63,8 @@ class DistributionRepository(var apiService: ApiService) {
         val url = URL_PROJECT
         val headers = mapOf(
             "Content-Type" to "application/json",
-            "Authorization" to TOKEN
+            "Authorization" to TOKEN,
+            "Connection" to "close"
         )
 
         return apiService.getProjects(url, headers)
@@ -73,17 +74,17 @@ class DistributionRepository(var apiService: ApiService) {
 
     companion object {
 
-        val URL_LIST_DISTRIBUTION =  "${PapersManager.urlBase}/report-distribution/filter" 
+        val URL_LIST_DISTRIBUTION =  "${PapersManager.login.dataCompany.url}/report-distribution/filter" 
         
-        val URL_LEVEL =  "${PapersManager.urlBase}/all_levels"
+        val URL_LEVEL =  "${PapersManager.login.dataCompany.url}/all_levels"
 
-        val URL_AROUND =  "${PapersManager.urlBase}/all_arounds"
+        val URL_AROUND =  "${PapersManager.login.dataCompany.url}/all_arounds"
 
-        val URL_PROJECT =  "${PapersManager.urlBase}/all_projects"
+        val URL_PROJECT =  "${PapersManager.login.dataCompany.url}/all_projects"
 
-        val URL_TOWER =  "${PapersManager.urlBase}/all_towers"
+        val URL_TOWER =  "${PapersManager.login.dataCompany.url}/all_towers"
 
-        val TOKEN =  PapersManager.token
+        val TOKEN =  PapersManager.login.dataLogin.token
 
 
     }

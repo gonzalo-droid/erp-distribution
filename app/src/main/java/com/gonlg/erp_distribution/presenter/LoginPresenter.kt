@@ -81,19 +81,13 @@ class LoginPresenter (
                     v.hideLoading()
                     when (e) {
                         is HttpException -> {
-                            v.loginSuccessPresenter(302, LoginResponse().apply {
-                                this.success=false
-                                this.message = "Incorrecto email o contraseña"
-                            })
+                            v.loginSuccessPresenter(302, LoginResponse())
                         }
                         is SocketTimeoutException -> {
                             v.customTimeOut()
                         }
                         else ->{
-                            v.loginSuccessPresenter(302,  LoginResponse().apply {
-                                this.success=false
-                                this.message = "Error en el servicio"
-                            })
+                            v.loginSuccessPresenter(302,  LoginResponse())
                         }
                     }
                 }
@@ -101,6 +95,9 @@ class LoginPresenter (
         })
     }
 
+    fun sessionPrefs(){
+
+    }
     interface View : BasePresenter.View {
         fun loginSuccessPresenter(status: Int, vararg args: Serializable)
     }

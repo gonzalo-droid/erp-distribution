@@ -55,15 +55,17 @@
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/ed_code_company"
+                    android:id="@+id/et_code_company"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/shape_input_text"
                     android:fontFamily="@font/montserrat"
                     android:imeOptions="actionNext"
+                    android:textAllCaps="true"
                     android:inputType="text"
                     android:padding="12dp"
                     android:textColor="@color/color_text"
@@ -86,6 +88,7 @@
 
 
         <androidx.appcompat.widget.AppCompatImageButton
+            android:visibility="gone"
             android:layout_marginLeft="5dp"
             android:id="@+id/btn_validate_code"
             android:layout_gravity="bottom"
@@ -265,7 +268,7 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:visibility="gone"
+
         android:id="@+id/lnl_content_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -279,7 +282,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/chk_remember"
+            android:id="@+id/chkRemember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:buttonTint="@color/teal_700"
@@ -287,6 +290,7 @@
             android:text="@string/chk_remember" />
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/text_forget_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

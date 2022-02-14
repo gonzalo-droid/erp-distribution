@@ -10,7 +10,7 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="button_login">Iniciar sesión</string>
-    <string name="chk_remember">Recordarme</string>
+    <string name="chk_remember">Recuérdame</string>
     <string name="description_login">Bienvenido de nuevo</string>
     <string name="email">Email</string>
     <string name="password">Contraseña</string>
@@ -22,6 +22,8 @@
     <string name="txt_start_search_distribution">Inicia tu búsqueda</string>
     <string name="txt_next">Siguiente</string>
     <string name="txt_code_company">Código</string>
+    <string name="txt_title_close_session">¿Estás seguro que \ndeseas cerrar sesión?</string>
+    <string name="txt_cancel">Cancelar</string>
 
 
 </resources>

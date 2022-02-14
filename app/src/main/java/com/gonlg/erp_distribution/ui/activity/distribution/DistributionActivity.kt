@@ -8,19 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.*
-import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatImageButton
-import androidx.appcompat.widget.AppCompatTextView
+import androidx.appcompat.widget.*
+import androidx.core.content.ContextCompat
 import com.gonlg.erp_distribution.R
+import com.gonlg.erp_distribution.data.Prefs
 import com.gonlg.erp_distribution.data.request.DistributionIdRequest
 import com.gonlg.erp_distribution.data.request.FilterDistributionRequest
 import com.gonlg.erp_distribution.data.response.*
 import com.gonlg.erp_distribution.databinding.ActivityDistributionBinding
 import com.gonlg.erp_distribution.presenter.DistributionPresenter
 import com.gonlg.erp_distribution.presenter.sale.SaleDetailPresenter
+import com.gonlg.erp_distribution.ui.activity.login.LoginActivity
 import com.gonlg.erp_distribution.ui.adapter.DistributionAdapter
+import com.gonlg.erp_distribution.ui.application.ErpApplication
 import com.gonlg.erp_distribution.ui.base.ErpBaseActivity
 import com.gonlg.erp_distribution.utils.PapersManager
+import com.gonlg.erp_distribution.utils.startActivityTo
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import kotlinx.android.synthetic.main.item_total.view.*
 import java.io.Serializable
 import javax.inject.Inject
@@ -34,6 +38,8 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
     @Inject
     lateinit var saleDetailPresenter: SaleDetailPresenter
 
+    @Inject
+    lateinit var prefs: Prefs
 
     private var distributionAdapter: DistributionAdapter? = null
     private lateinit var binding: ActivityDistributionBinding
@@ -65,19 +71,130 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
         distributionPresenter.attachView(this)
         saleDetailPresenter.attachView(this)
 
+        distributionPresenter.getListProjectUseCase(
+            listener = { i, list  ->
+                when (i) {
+                    200 -> {
+                        // TODO add all filter
+                        PapersManager.getProjects = list as ArrayList<ProjectResponse>
+                        getFilterData()
+                    }
+                    else -> {
+                        customDialogExpiredSession()
+                    }
+                }
+            })
+
+
         binding.lnlEmpty.visibility = View.VISIBLE
         binding.tvFailSearch.visibility = View.GONE
         binding.tvStartSearch.visibility = View.VISIBLE
         binding.recycler.visibility = View.GONE
         binding.lnlFilter.visibility = View.GONE
 
+
+        binding.txtTitle.text = PapersManager.login.dataCompany.name
         binding.fab.setOnClickListener { view ->
             dialogFilter()
         }
 
-        setAdapter()
-        getFilterData()
+        binding.btnProfile.setOnClickListener {
+            showBottomSheetDialog()
+        }
 
+
+        if(prefs.session){
+            PapersManager.login.dataLogin.token = prefs.token.toString()
+            PapersManager.login.dataCompany.name = prefs.nameCompany.toString()
+            PapersManager.login.dataCompany.url = prefs.url.toString()
+            PapersManager.login.dataCompany.name = prefs.nameCompany.toString()
+        }
+
+        setAdapter()
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun showBottomSheetDialog() {
+        val view = layoutInflater.inflate(R.layout.bottom_option, null)
+        val dialog = BottomSheetDialog(this)
+        dialog.setContentView(view)
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        val btnCloseSession: LinearLayoutCompat = dialog.findViewById<View>(R.id.btnCloseSession) as LinearLayoutCompat
+
+        btnCloseSession.setOnClickListener {
+
+            customDialogCloseSession()
+            dialog.dismiss()
+        }
+
+
+        dialog.show()
+    }
+
+    private fun customDialogCloseSession() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_close_session)
+        val btnAccept: AppCompatButton = dialog.findViewById<View>(R.id.btnOk) as AppCompatButton
+        val btnCancel: AppCompatButton =
+            dialog.findViewById<View>(R.id.btnCancel) as AppCompatButton
+
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.window?.attributes?.windowAnimations = R.style.AppTheme_Slide
+        dialog.setCancelable(false)
+        dialog.show()
+
+        btnCancel.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        btnAccept.setOnClickListener {
+            logout()
+            dialog.dismiss()
+        }
+    }
+
+
+    private fun customDialogExpiredSession() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_session_expired)
+        val btnAccept: AppCompatButton = dialog.findViewById<View>(R.id.btnOk) as AppCompatButton
+        dialog.window?.setLayout(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent);
+        dialog.window?.attributes?.windowAnimations = R.style.AppTheme_Slide
+        dialog.setCancelable(false)
+        dialog.show()
+
+        btnAccept.setOnClickListener {
+            logout()
+            dialog.dismiss()
+        }
+    }
+
+    private fun logout() {
+        ErpApplication.closeAll()
+        prefs.logout()
+        PapersManager.login.dataCompany = LoginResponse.DataCompany()
+        PapersManager.login.dataLogin = LoginResponse.DataLogin()
+        PapersManager.login = LoginResponse()
+        PapersManager.getArounds = ArrayList<AroundResponse>()
+        PapersManager.getTowers = ArrayList<TowerResponse>()
+        PapersManager.getLevels = ArrayList<LevelResponse>()
+        PapersManager.getProjects = ArrayList<ProjectResponse>()
+        finish()
+        startActivityTo(LoginActivity::class.java)
     }
 
     private fun dialogFilter() {
@@ -210,24 +327,6 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
     }
 
     private fun getFilterData() {
-
-
-        distributionPresenter.getListProjectUseCase(
-            listener = { i, list  ->
-                when (i) {
-                    200 -> {
-                        // TODO add all filter
-//                        var data = list as ArrayList<ProjectResponse>
-//                        data.add(ProjectResponse("ACTIVO","Todos",0))
-//                        PapersManager.getProjects = data
-                        PapersManager.getProjects = list as ArrayList<ProjectResponse>
-                    }
-                    else -> {
-
-                    }
-                }
-            })
-
 
         distributionPresenter.getListAroundUseCase(
             listener = { i, list  ->

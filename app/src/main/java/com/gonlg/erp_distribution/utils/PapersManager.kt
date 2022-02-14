@@ -70,20 +70,11 @@ object PapersManager {
         get() {
             return Paper.book(BuildConfig.FLAVOR).read("getStatus", arrayListOf())
         }
-
-    var token: String
+    var login: LoginResponse
         set(value) {
-            Paper.book(BuildConfig.FLAVOR).write("token", value)
+            Paper.book(BuildConfig.FLAVOR).write("login", value)
         }
         get() {
-            return Paper.book(BuildConfig.FLAVOR).read("token", "")
-        }
-
-    var urlBase: String
-        set(value) {
-            Paper.book(BuildConfig.FLAVOR).write("urlBase", value)
-        }
-        get() {
-            return Paper.book(BuildConfig.FLAVOR).read("urlBase", "")
+            return Paper.book(BuildConfig.FLAVOR).read("login", LoginResponse())
         }
 }

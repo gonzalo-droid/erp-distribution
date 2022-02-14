@@ -1,16 +1,16 @@
 package com.gonlg.erp_distribution.data.repository
 
 import android.util.Log
+import com.gonlg.erp_distribution.data.Prefs
 import com.gonlg.erp_distribution.data.request.DistributionIdRequest
-import com.gonlg.erp_distribution.data.response.*
+import com.gonlg.erp_distribution.data.response.SaleDetailResponse
 import com.gonlg.erp_distribution.data.retrofit.ApiService
-import com.gonlg.erp_distribution.utils.Methods
 import com.gonlg.erp_distribution.utils.PapersManager
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class SaleDetailRepository (var apiService: ApiService) {
+class SaleDetailRepository (var apiService: ApiService, var prefs: Prefs) {
 
     fun getSaleDetail(request: DistributionIdRequest): Observable<SaleDetailResponse> {
         val url = "${URL_SALE}?distribution_id=${request.distributionId}"
@@ -27,8 +27,8 @@ class SaleDetailRepository (var apiService: ApiService) {
 
     companion object {
 
-        val URL_SALE =  "${PapersManager.urlBase}/sale-first"
-        val TOKEN = PapersManager.token
+        val URL_SALE =  "${PapersManager.login.dataCompany.url}/sale-first"
+        val TOKEN = PapersManager.login.dataLogin.token
 
     }
 }
