@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context="com.gonlg.erp_distribution.ui.activity.login.LoginActivity">
+    tools:context="com.solti.solti_inmobiliaria.ui.activity.login.LoginActivity">
 
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -268,7 +268,7 @@
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
-
+        android:visibility="gone"
         android:id="@+id/lnl_content_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -290,7 +290,7 @@
             android:text="@string/chk_remember" />
 
         <TextView
-            android:visibility="gone"
+
             android:id="@+id/text_forget_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
