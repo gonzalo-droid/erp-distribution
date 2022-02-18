@@ -1,5 +1,7 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="dimen_input_field_filter">40dp</dimen>
+    <dimen name="text_size_input_filer_summary">10sp</dimen>
 
 
 </resources>
