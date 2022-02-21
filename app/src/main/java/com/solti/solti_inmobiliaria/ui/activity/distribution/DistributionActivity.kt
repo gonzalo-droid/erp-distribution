@@ -323,8 +323,10 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
         var listStatus : ArrayList<StatusResponse> = arrayListOf()
         listStatus.add(0, StatusResponse("ACTIVO",1,"","Todos"))
         listStatus.add( StatusResponse("ACTIVO",2,"free","Libre"))
-        listStatus.add( StatusResponse("ACTIVO",3,"sold","Vendido"))
-        listStatus.add( StatusResponse("ACTIVO",4,"separated","Separado"))
+        listStatus.add( StatusResponse("ACTIVO",3,"expired","Vencida"))
+        listStatus.add( StatusResponse("ACTIVO",4,"incomplete","Inicial incompleta"))
+        listStatus.add( StatusResponse("ACTIVO",5,"no_debt","Sin deuda"))
+
         PapersManager.getStatus = listStatus
     }
 
@@ -379,8 +381,9 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
 
         binding.lnlFilter.tv_total_count.text =  PapersManager.responseDistributions.totalDistributions.distributionActive.toString()
         binding.lnlFilter.tv_total_free_count.text =  PapersManager.responseDistributions.totalDistributions.distributionFree.toString()
-        binding.lnlFilter.tv_total_sold_count.text =  PapersManager.responseDistributions.totalDistributions.distributionSold.toString()
-        binding.lnlFilter.tv_total_separated_count.text =  PapersManager.responseDistributions.totalDistributions.distributionSeparated.toString()
+        binding.lnlFilter.tv_total_expired_count.text =  PapersManager.responseDistributions.totalDistributions.distributionExpired.toString()
+        binding.lnlFilter.tv_total_incomplete_count.text =  PapersManager.responseDistributions.totalDistributions.distributionIncomplete.toString()
+        binding.lnlFilter.tv_total_no_debt_count.text =  PapersManager.responseDistributions.totalDistributions.distributionNoDebt.toString()
 
         if(PapersManager.responseDistributions.totalPercentage.activePercentage != ""){
             binding.lnlFilter.tv_total_percentage.text =
@@ -389,11 +392,14 @@ class DistributionActivity : ErpBaseActivity(), DistributionPresenter.View, Sale
             binding.lnlFilter.tv_total_free_percentage.text =
                 PapersManager.responseDistributions.totalPercentage.freePercentage.replace("%","").trim().toDouble().roundToInt().toString()
 
-            binding.lnlFilter.tv_total_sold_percentage.text =
-                PapersManager.responseDistributions.totalPercentage.soldPercentage.replace("%","").trim().toDouble().roundToInt().toString()
+            binding.lnlFilter.tv_total_expired_percentage.text =
+                PapersManager.responseDistributions.totalPercentage.expiredPercentage.replace("%","").trim().toDouble().roundToInt().toString()
 
-            binding.lnlFilter.tv_total_separated_percentage.text =
-                PapersManager.responseDistributions.totalPercentage.separatedPercentage.replace("%","").trim().toDouble().roundToInt().toString()
+            binding.lnlFilter.tv_total_incomplete_percentage.text =
+                PapersManager.responseDistributions.totalPercentage.incompletePercentage.replace("%","").trim().toDouble().roundToInt().toString()
+
+            binding.lnlFilter.tv_total_no_debt_percentage.text =
+                PapersManager.responseDistributions.totalPercentage.noDebtPercentage.replace("%","").trim().toDouble().roundToInt().toString()
         }
 
         binding.lnlFilterSummary.tv_filter_around.text = aroundSelectName

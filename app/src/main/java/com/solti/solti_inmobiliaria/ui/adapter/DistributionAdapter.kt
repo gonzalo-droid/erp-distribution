@@ -31,16 +31,16 @@ class DistributionAdapter  (private val listener: (Int, Distributions) -> Unit) 
 
             var i = Random.nextInt(1,3)
 
-            if(distribution.status.equals("Vendido")){
+            if(distribution.statusDistributionSale.equals("no_debt")){
                 tv_title_distribution.setTextColor(context.getColor(R.color.white))
                 tv_title_distribution.setBackgroundColor(context.getColor(R.color.blue))
-            }else if(distribution.status.equals("Incompleta")){
+            }else if(distribution.statusDistributionSale.equals("incomplete")){
                 tv_title_distribution.setTextColor(context.getColor(R.color.black))
                 tv_title_distribution.setBackgroundColor(context.getColor(R.color.yellow))
-            }else if(distribution.status.equals("Vencida")){
+            }else if(distribution.statusDistributionSale.equals("expired")){
                 tv_title_distribution.setTextColor(context.getColor(R.color.white))
                 tv_title_distribution.setBackgroundColor(context.getColor(R.color.red))
-            }else if(distribution.status.equals("Separado")){
+            }else if(distribution.statusDistributionSale.equals("separated")){
                 tv_title_distribution.setTextColor(context.getColor(R.color.white))
                 tv_title_distribution.setBackgroundColor(context.getColor(R.color.orange))
             }else{
