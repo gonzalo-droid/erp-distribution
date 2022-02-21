@@ -154,7 +154,7 @@ class DistributionPresenter (
             }
         })
 
-        
+
     }
 
     fun getListDistributionUseCase(request: FilterDistributionRequest) {

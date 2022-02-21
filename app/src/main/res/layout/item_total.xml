@@ -5,26 +5,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center|top"
+    android:gravity="center"
     android:layout_gravity="top|center"
     android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_total"
-        android:layout_width="60dp"
+        android:layout_width="@dimen/width_card_item"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_margin="5dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="21dp"
         android:orientation="vertical"
         app:cardCornerRadius="10dp"
         app:cardElevation="6dp"
-        app:layout_constraintBottom_toBottomOf="@+id/card_total_free"
-        app:layout_constraintEnd_toStartOf="@+id/card_total_free"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/card_total_free"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -54,16 +47,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/top_title_percentage"
                 android:elevation="10dp"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center"
-                android:text="Total:"
-                android:layout_marginStart="10dp"
+                android:text="Total"
                 android:textColor="@color/black"
-                android:textSize="9sp"
+                android:textSize="@dimen/text_size_title_card"
                 android:textStyle="bold"
-
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_total_percentage" />
 
@@ -90,21 +82,14 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_total_free"
-        android:layout_width="60dp"
+        android:layout_width="@dimen/width_card_item"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_margin="5dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="21dp"
         android:orientation="vertical"
         app:cardCornerRadius="10dp"
         app:cardElevation="6dp"
-        app:cardBackgroundColor="@color/green"
-        app:layout_constraintBottom_toBottomOf="@+id/card_total_sold"
-        app:layout_constraintEnd_toStartOf="@+id/card_total_sold"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/card_total"
-        app:layout_constraintTop_toTopOf="@+id/card_total_sold">
+        app:cardBackgroundColor="@color/green">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -134,16 +119,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/top_title_percentage"
                 android:elevation="10dp"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center"
-                android:text="Libre:"
-                android:layout_marginStart="10dp"
+                android:text="Libre"
                 android:textColor="@color/black"
-                android:textSize="9sp"
+                android:textSize="@dimen/text_size_title_card"
                 android:textStyle="bold"
-
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_total_free_percentage" />
 
@@ -169,22 +153,15 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_total_sold"
-        android:layout_width="60dp"
+        android:id="@+id/card_total_expired"
+        android:layout_width="@dimen/width_card_item"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_margin="5dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="22dp"
         android:orientation="vertical"
         app:cardCornerRadius="10dp"
         app:cardElevation="6dp"
-        app:cardBackgroundColor="@color/red"
-        app:layout_constraintBottom_toBottomOf="@+id/card_total_separated"
-        app:layout_constraintEnd_toStartOf="@+id/card_total_separated"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/card_total_free"
-        app:layout_constraintTop_toTopOf="@+id/card_total_separated">
+        app:cardBackgroundColor="@color/red">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -193,7 +170,7 @@
             >
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_total_sold_percentage"
+                android:id="@+id/tv_total_expired_percentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -215,21 +192,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/top_title_percentage"
                 android:elevation="10dp"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center"
-                android:text="Vendido:"
-                android:layout_marginStart="10dp"
+                android:text="Vencida"
                 android:textColor="@color/white"
-                android:textSize="9sp"
+                android:textSize="@dimen/text_size_title_card"
                 android:textStyle="bold"
-
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_total_sold_percentage" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_expired_percentage" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_total_sold_count"
+                android:id="@+id/tv_total_expired_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -250,20 +226,15 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_total_separated"
-        android:layout_width="60dp"
+        android:id="@+id/card_total_incomplete"
+        android:layout_width="@dimen/width_card_item"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
+        android:layout_margin="5dp"
         android:layout_gravity="center"
         android:orientation="vertical"
         app:cardCornerRadius="10dp"
         app:cardElevation="6dp"
-        app:cardBackgroundColor="@color/orange"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/card_total_sold"
-        tools:layout_editor_absoluteY="50dp">
+        app:cardBackgroundColor="@color/yellow">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -271,7 +242,7 @@
             >
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_total_separated_percentage"
+                android:id="@+id/tv_total_incomplete_percentage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -289,25 +260,24 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/appCompatTextViewSeparated"
+                android:id="@+id/appCompatTextViewincomplete"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/top_title_percentage"
                 android:elevation="10dp"
                 android:fontFamily="@font/montserrat"
                 android:gravity="center"
-                android:text="Separado:"
-                android:layout_marginStart="10dp"
+                android:text="Incompleta"
                 android:textColor="@color/black"
-                android:textSize="9sp"
+                android:textSize="@dimen/text_size_title_card"
                 android:textStyle="bold"
-
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_total_separated_percentage" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_incomplete_percentage" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tv_total_separated_count"
+                android:id="@+id/tv_total_incomplete_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -320,7 +290,79 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatTextViewSeparated"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextViewincomplete"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_total_no_debt"
+        android:layout_width="@dimen/width_card_item"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="@color/blue">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total_no_debt_percentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="10dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="40"
+                android:drawableEnd="@drawable/ic_percentage"
+                android:drawableTint="@color/white"
+                android:drawablePadding="2dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextViewNoDebt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/top_title_percentage"
+                android:elevation="10dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="Sin deuda"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_title_card"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_total_no_debt_percentage" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_total_no_debt_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:elevation="10dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center"
+                android:text="1651"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextViewNoDebt"
                 app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

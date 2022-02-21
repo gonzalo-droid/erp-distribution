@@ -9,8 +9,10 @@ data class TotalPercentage(
     var activePercentage: String = "",
     @SerializedName("free_percentage")
     var freePercentage: String = "",
-    @SerializedName("separated_percentage")
-    var separatedPercentage: String = "" ,
-    @SerializedName("sold_percentage")
-    var soldPercentage: String = ""
+    @SerializedName("expired_percentage")
+    var expiredPercentage: String = "" ,
+    @SerializedName("incomplete_percentage")
+    var incompletePercentage: String = "",
+    @SerializedName("no_debt_percentage")
+    var noDebtPercentage: String = ""
 ) : Serializable

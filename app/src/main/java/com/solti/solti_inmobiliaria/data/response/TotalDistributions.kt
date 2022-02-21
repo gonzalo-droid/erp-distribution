@@ -9,8 +9,10 @@ data class TotalDistributions(
     var distributionActive: Int = 0,
     @SerializedName("distribution_free")
     var distributionFree: Int = 0,
-    @SerializedName("distribution_separated")
-    var distributionSeparated: Int = 0,
-    @SerializedName("distribution_sold")
-    var distributionSold: Int = 0
+    @SerializedName("distribution_expired")
+    var distributionExpired: Int = 0,
+    @SerializedName("distribution_incomplete")
+    var distributionIncomplete: Int = 0,
+    @SerializedName("distribution_no_debt")
+    var distributionNoDebt: Int = 0
 ) : Serializable
