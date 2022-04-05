@@ -24,7 +24,7 @@ data class Distributions(
     @SerializedName("status_distribution_sale")
     var statusDistributionSale: String = "",
     @SerializedName("payment_status")
-    var paymentStatus: String = "",
+    var paymentStatus: String? = "",
     @SerializedName("tower_name")
     var towerName: String = ""
 ) : Serializable
