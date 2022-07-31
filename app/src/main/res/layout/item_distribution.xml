@@ -22,8 +22,8 @@ android:clickable="true"
 
 <androidx.appcompat.widget.AppCompatTextView
     android:id="@+id/tv_title_distribution"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="70dp"
+    android:layout_height="35dp"
     android:fontFamily="@font/montserrat"
     android:gravity="center"
     android:text="MZ L-4"

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.solti.solti_inmobiliaria">
+    package="com.solti.inmobiliaria">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.solti.solti_inmobiliaria.ui.application.ErpApplication"
+        android:name="com.solti.inmobiliaria.ui.application.ErpApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_logo_erp_app"
         android:label="@string/app_name"
@@ -16,7 +16,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name="com.solti.solti_inmobiliaria.ui.activity.sale.SaleDetailActivity"
+            android:name="com.solti.inmobiliaria.ui.activity.sale.SaleDetailActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:launchMode="singleTop"
@@ -24,7 +24,7 @@
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name="com.solti.solti_inmobiliaria.ui.activity.login.LoginActivity"
+            android:name="com.solti.inmobiliaria.ui.activity.login.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="true"
             android:label="@string/app_name"
@@ -40,7 +40,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.solti.solti_inmobiliaria.ui.activity.distribution.DistributionActivity"
+            android:name="com.solti.inmobiliaria.ui.activity.distribution.DistributionActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:launchMode="singleTop"
